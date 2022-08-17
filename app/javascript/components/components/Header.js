@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Nav, NavItem } from 'reactstrap'
+import React, { Component } from 'react';
+import { Nav, NavItem } from 'reactstrap';
 
 class Header extends Component {
   render() {
