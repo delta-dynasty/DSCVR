@@ -10,9 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_17_022218) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_17_220041) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "listings", force: :cascade do |t|
+    t.string "name"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.text "description"
+    t.text "phone"
+    t.text "hours"
+    t.boolean "outside"
+    t.boolean "inside"
+    t.boolean "water"
+    t.boolean "children"
+    t.boolean "pets"
+    t.boolean "food"
+    t.boolean "alcohol"
+    t.text "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "title"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "listing_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
