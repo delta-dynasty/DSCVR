@@ -1,7 +1,7 @@
 import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import UpdateOrDeleteListing from './pages/UpdateOrDeleteListing'
+import UpdateOrDeleteListing from './UpdateOrDeleteListing'
 Enzyme.configure({ adapter: new Adapter() })
 
 describe("When UpdateOrDeleteListing renders", () => {
