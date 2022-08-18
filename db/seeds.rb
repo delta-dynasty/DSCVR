@@ -9,78 +9,72 @@
 
 user1 = User.where(email: 'example@gmail.com').first_or_create(password: 'valid_password', password_confirmation: 'valid_password')
 
-user2 = User.create(email: 'example2gmail.com', password: 'valid_password', password_confirmation: 'valid_password')
+user2 = User.create!(email: 'example2@gmail.com', password: 'valid_password', password_confirmation: 'valid_password')
 
-listings1 = [
-    {
-        name: 'Highwood Park'
-        street: '4200 Parks Avenue'
-        City: 'La Mesa'
-        State: 'CA'
-        description: 'Explore the nice quiet atmosphere of Highwood Park. It features barbecues, benches, rest rooms and a shaded picnic area. Great for children and pets.'
-        phone: '858-207-7181'
-        hours: '6:00 AM - 10:00 PM'
-        outside: 'true'
-        inside: 'false'
-        water: 'false'
-        children: 'true'
-        pets: 'true'
-        food: 'false'
-        alcohol: 'false'
-        image:text 
-    }
-]
+listings1 = user1.listings.create!(
+    name: 'Highwood Park',
+    street: '4200 Parks Avenue',
+    city: 'La Mesa',
+    state: 'CA',        
+    description: 'Explore the nice quiet atmosphere of Highwood Park. It features barbecues, benches, rest rooms and a shaded picnic area. Great for children and pets.',
+    phone: '858-207-7181',
+    hours: '6:00 AM - 10:00 PM',
+    outside: 'true',
+    inside: 'false',
+    water: 'false',
+    children: 'true',
+    pets: 'true',
+    food: 'false',
+    alcohol: 'false',
+    image: 'text',
+)
 
-listings2 = [
-    {
-        name: 'Coronado Beach'
-        street: '100 Ocean Blvd'
-        City: 'Coronado'
-        State: 'CA'
-        description: 'Explore the nice quiet atmosphere of Highwood Park. It features barbecues, benches, rest rooms and a shaded picnic area. Great for children and pets.'
-        phone: 'N/A'
-        hours: 'N/A'
-        outside: 'true'
-        inside: 'false'
-        water: 'false'
-        children: 'true'
-        pets: 'true'
-        food: 'false'
-        alcohol: 'false'
-        image:text 
-    }
-]
+listings2 = user2.listings.create!(
+    name: 'Coronado Beach',
+    street: '100 Ocean Blvd',
+    city: 'Coronado',
+    state: 'CA',
+    description: 'Explore the nice quiet atmosphere of Highwood Park. It features barbecues, benches, rest rooms and a shaded picnic area. Great for children and pets.',
+    phone: 'N/A',
+    hours: 'N/A',
+    outside: 'true',
+    inside: 'false',
+    water: 'false',
+    children: 'true',
+    pets: 'true',
+    food: 'false',
+    alcohol: 'false',
+    image: 'text', 
+)
 
-reviews1 = [
-    {
-        title: 'Lovely'
-        text: 'My new favorite place!'
-    }
-]
+reviews1 = user1.reviews.create!(
+    title: 'Lovely',
+    comment: 'My new favorite place!',
+    listing_id: listings1.id
+)
 
-reviews2 = [
-    {
-        title: 'Awesome!'
-        text: 'Best weekend ever!'
-    }
-]
+reviews2 = user2.reviews.create!(
+    title: 'Awesome!',
+    comment: 'Best weekend ever!',
+    listing_id: listings2.id
+)
 
-listings1.each do |attributes|
-    user1.listings.create(attributes)
-    p "Creating listing #{attributes}"
-end
+# listings1.each do |attributes|
+#     user1.listings.create!(attributes)
+#     p "Creating listing #{attributes}"
+# end
 
-listings2.each do |attributes|
-    user2.listings.create(attributes)
-    p "Creating listing #{attributes}"
-end
+# listings2.each do |attributes|
+#     user2.listings.create!(attributes)
+#     p "Creating listing #{attributes}"
+# end
 
-review1.each do |attributes|
-    user1.listing.reviews.create(attributes)
-    p "Creating review #{attributes}"
-end
+# reviews1.each do |attributes|
+#     listings1.reviews.create!(attributes)
+#     p "Creating review #{attributes}"
+# end
 
-review2.each do |attributes|
-    user2.listing.reviews.create(attributes)
-    p "Creating review #{attributes}"
-end
+# reviews2.each do |attributes|
+#     listings2.reviews.create!(attributes)
+#     p "Creating review #{attributes}"
+# end
