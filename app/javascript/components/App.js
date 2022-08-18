@@ -36,6 +36,7 @@ class App extends Component {
     return(
       <>
         <Router>
+          <Header />
           <h1>
             This is the Home page
           </h1>
