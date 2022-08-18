@@ -11,3 +11,4 @@ describe("When NotFound renders", () => {
     expect(notFoundHeading.text()).toEqual("This Should Fail")
   })
 })
+

@@ -46,7 +46,7 @@ class App extends Component {
               <Route path="/create_listing" component={CreateListing} />
               <Route path="/index" component={Index} />
               <Route path="/logged_in_home" component={LoggedInHome} />
-              <Route path="/not_found" component={NotFound} />
+              <Route component={NotFound} />
               <Route path="/review" component={Review} />
               <Route path="/review_edit" component={ReviewEdit} />
               <Route path="/show" component={Show} />
