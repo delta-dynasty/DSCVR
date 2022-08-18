@@ -38,7 +38,7 @@ class Header extends Component {
           }
           {logged_in &&
             <NavItem>
-              <a href='/createlisting' className="nav-link">Submit a new listing</a>
+              <a href='/create_listing' className="nav-link">Submit a new listing</a>
             </NavItem>
           }
            {logged_in &&
