@@ -25,25 +25,7 @@ class App extends Component {
       locations: [],
       reviews: [],
     }
-  }
-
-  // componentDidMount() {
-  //   this.getLocations()
-  //   this.getReviews()
-  // }
-
-  // getLocations() {
-  //   fetch("/index")
-  //   .then(res => res.json())
-  //   .then(data => this.setState({ locations: data }))
-  // }
-
-  // getReviews() {
-  //   fetch("/review")
-  //   .then(res => res.json())
-  //   .then(data => this.setState({ reviews: data }))
-  // }
-      
+  }     
   render() {
     const {
       logged_in,
