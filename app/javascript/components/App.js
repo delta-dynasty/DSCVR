@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
 import Header from './components/Header'
+import Footer from './components/Footer'
+import About from './pages/About'
+import CreateListing from './pages/CreateListing'
+import Home from './pages/Home'
+import Index from './pages/Index'
+import LoggedInHome from './pages/LoggedInHome'
+import NotFound from './pages/NotFound'
+import Review from './pages/Review'
+import ReviewEdit from './pages/ReviewEdit'
+import Show from './pages/Show'
+import UpdateOrDeleteListing from './pages/UpdateOrDeleteListing'
+
 
 class App extends Component {
   render() {
