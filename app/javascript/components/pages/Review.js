@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class Review extends Component {
   render() {
     return (
-      <div>Home</div>
+      <div>Review</div>
     )
   }
 }
