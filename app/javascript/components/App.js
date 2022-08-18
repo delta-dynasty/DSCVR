@@ -11,6 +11,11 @@ import Review from './pages/Review'
 import ReviewEdit from './pages/ReviewEdit'
 import Show from './pages/Show'
 import UpdateOrDeleteListing from './pages/UpdateOrDeleteListing'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom'
 
 
 class App extends Component {
@@ -30,8 +35,24 @@ class App extends Component {
     console.log("sign_out_route:", sign_out_route)
     return(
       <>
-        <Header {...this.props} />
-        <h1>React in Rails with Devise</h1>
+        <Router>
+          <h1>
+            This is the Home page
+          </h1>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/about" component={About} />
+              <Route path="/create_listing" component={CreateListing} />
+              <Route path="/index" component={Index} />
+              <Route path="/logged_in_home" component={LoggedInHome} />
+              <Route path="/not_found" component={NotFound} />
+              <Route path="/review" component={Review} />
+              <Route path="/review_edit" component={ReviewEdit} />
+              <Route path="/show" component={Show} />
+              <Route path="/update_or_delete_listing" component={UpdateOrDeleteListing} />
+            </Switch>
+          <Footer />
+        </Router>
       </>
     )
   }
