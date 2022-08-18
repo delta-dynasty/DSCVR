@@ -59,22 +59,3 @@ reviews2 = user2.reviews.create!(
     listing_id: listings2.id
 )
 
-# listings1.each do |attributes|
-#     user1.listings.create!(attributes)
-#     p "Creating listing #{attributes}"
-# end
-
-# listings2.each do |attributes|
-#     user2.listings.create!(attributes)
-#     p "Creating listing #{attributes}"
-# end
-
-# reviews1.each do |attributes|
-#     listings1.reviews.create!(attributes)
-#     p "Creating review #{attributes}"
-# end
-
-# reviews2.each do |attributes|
-#     listings2.reviews.create!(attributes)
-#     p "Creating review #{attributes}"
-# end
