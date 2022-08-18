@@ -19,13 +19,6 @@ import {
 
 
 class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      locations: [],
-      reviews: [],
-    }
-  }     
   render() {
     const {
       logged_in,
