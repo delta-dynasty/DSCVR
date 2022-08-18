@@ -9,7 +9,7 @@
 
 user1 = User.where(email: 'example@gmail.com').first_or_create(password: 'valid_password', password_confirmation: 'valid_password')
 
-user2 = User.create!(email: 'example2@gmail.com', password: 'valid_password', password_confirmation: 'valid_password')
+user2 = User.where(email: 'example2@gmail.com').first_or_create(password: 'valid_password', password_confirmation: 'valid_password')
 
 listings1 = user1.listings.create!(
     name: 'Highwood Park',
