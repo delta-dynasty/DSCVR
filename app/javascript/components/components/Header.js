@@ -14,8 +14,38 @@ class Header extends Component {
     console.log("current_user:", current_user)
     return(
       <>
-        <h1>React in Rails with Devise</h1>
+        <h1>Feel free to DSCVR</h1>
         <Nav>
+          {
+            <NavItem>
+              <a href='/' className="nav-link">Home</a>
+            </NavItem>
+          }
+          {
+            <NavItem>
+              <a  href='/index' className="nav-link">See all Locations</a>
+            </NavItem>
+          }
+          {
+            <NavItem>
+              <a href='/about' className="nav-link">About us</a>
+            </NavItem>
+          }
+          {
+            <NavItem>
+              <a href='/review' className="nav-link">Check out some reviews</a>
+            </NavItem>
+          }
+          {logged_in &&
+            <NavItem>
+              <a href='/createlisting' className="nav-link">Submit a new listing</a>
+            </NavItem>
+          }
+           {logged_in &&
+            <NavItem>
+              <a href='/updateordeletelisting' className="nav-link">Update or Delete a previous listing</a>
+            </NavItem>
+          }
           {logged_in &&
             <NavItem>
               <a href={sign_out_route} className="nav-link">Sign Out</a>
