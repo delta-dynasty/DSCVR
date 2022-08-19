@@ -1,0 +1,40 @@
+let listings = [
+    {
+    id: 1,
+    name: 'Highwood Park',
+    street: '4200 Parks Avenue',
+    city: 'La Mesa',
+    state: 'CA',        
+    description: 'Explore the nice quiet atmosphere of Highwood Park. It features barbecues, benches, rest rooms and a shaded picnic area. Great for children and pets.',
+    phone: '858-207-7181',
+    hours: '6:00 AM - 10:00 PM',
+    outside: 'true',
+    inside: 'false',
+    water: 'false',
+    children: 'true',
+    pets: 'true',
+    food: 'false',
+    alcohol: 'false',
+    image: 'text',
+    },
+    {
+    id: 2,
+    name: 'Coronado Beach',
+    street: '100 Ocean Blvd',
+    city: 'Coronado',
+    state: 'CA',
+    description: 'Explore the nice quiet atmosphere of Highwood Park. It features barbecues, benches, rest rooms and a shaded picnic area. Great for children and pets.',
+    phone: 'N/A',
+    hours: 'N/A',
+    outside: 'true',
+    inside: 'false',
+    water: 'false',
+    children: 'true',
+    pets: 'true',
+    food: 'false',
+    alcohol: 'false',
+    image: 'text', 
+    }
+]
+
+export default listings

@@ -16,9 +16,33 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
+import listings from './MockListings'
 
+//Search Method
+const filteredPlaces = () => {
+  results = {
+    outside: [],
+    inside: [],
+    water: [],
+    children: [],
+    pets: [],
+    food: [],
+    alcohol: [],
+  }
+//  checked boxes go to eventlistener and then submit(DSCVR) button processes selection and sends it thru the if/else statements. if value = true AND value not already present value.push.
+  //Then process object 
+  // A variable that represents the k/v pairs
+}
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      listings: listings
+    }
+  }
+  
+
   render() {
     const {
       logged_in,
@@ -27,7 +51,8 @@ class App extends Component {
       sign_in_route,
       sign_out_route
     } = this.props
-    
+
+    console.log(this.state.listings)
     console.log("logged_in:", logged_in)
     console.log("current_user:", current_user)
     console.log("new_user_route:", new_user_route)
