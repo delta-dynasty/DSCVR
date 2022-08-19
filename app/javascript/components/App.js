@@ -44,7 +44,7 @@ class App extends Component {
               <Route path="/logged_in_home" component={LoggedInHome} />
               <Route path="/not_found" component={NotFound} />
               <Route path="/review" render={() => <Review createReview={this.createReview} current_user = {this.props.current_user}/>}/>
-              <Route path="update_or_delete_review/:id" render={(props) => {
+              <Route path="/update_or_delete_review/:id" render={(props) => {
                 let id = +props.match.params.id
                 let review = this.state.reviews.find(review => review.id === id)
                 return <UpdateOrDeleteReview {...props} review={review} />
