@@ -8,7 +8,7 @@ import Index from './pages/Index'
 import LoggedInHome from './pages/LoggedInHome'
 import NotFound from './pages/NotFound'
 import Review from './pages/CreateReview'
-import ReviewEdit from './pages/UpdateOrDeleteReview'
+import UpdateOrDeleteReview from './pages/UpdateOrDeleteReview'
 import Show from './pages/Show'
 import UpdateOrDeleteListing from './pages/UpdateOrDeleteListing'
 import {
@@ -28,11 +28,7 @@ class App extends Component {
       sign_out_route
     } = this.props
     
-    console.log("logged_in:", logged_in)
-    console.log("current_user:", current_user)
-    console.log("new_user_route:", new_user_route)
-    console.log("sign_in_route:", sign_in_route)
-    console.log("sign_out_route:", sign_out_route)
+    
     return(
       <>
         <Router>
@@ -48,11 +44,10 @@ class App extends Component {
               <Route path="/logged_in_home" component={LoggedInHome} />
               <Route path="/not_found" component={NotFound} />
               <Route path="/review" render={() => <Review createReview={this.createReview} current_user = {this.props.current_user}/>}/>
-              <Route path="/review_edit" component={ReviewEdit} />
-              <Route path="/review_edit/:id" render={(props) => {
+              <Route path="update_or_delete_review/:id" render={(props) => {
                 let id = +props.match.params.id
                 let review = this.state.reviews.find(review => review.id === id)
-                return <ReviewEdit {...props} review={review} />
+                return <UpdateOrDeleteReview {...props} review={review} />
               }}/>
               <Route path="/show" component={Show} />
               <Route path="/update_or_delete_listing/:id" render={(props) => {
