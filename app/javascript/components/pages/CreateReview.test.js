@@ -25,5 +25,8 @@ describe("When CreateReview renders", () => {
 
     const formInput = renderedCreateReview.find("Input")
     expect(formInput.length).toEqual(2)
+
+    const formButton = renderedCreateReview.find("Button")
+    expect(formButton.length).toEqual(1)
   })
 })

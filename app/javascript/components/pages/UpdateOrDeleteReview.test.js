@@ -25,5 +25,8 @@ describe("When ReviewEdit renders", () => {
 
     const formInput = renderedUpdateOrDeleteReview.find("Input")
     expect(formInput.length).toEqual(2)
+
+    const formButton = renderedUpdateOrDeleteReview.find("Button")
+    expect(formButton.length).toEqual(2)
   })
 })

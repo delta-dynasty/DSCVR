@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
     def index
         listings = Listing.all;
-        render json: listing
+        render json: listings
     end
 
     def create

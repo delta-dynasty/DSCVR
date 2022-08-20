@@ -6,24 +6,34 @@ export default class UpdateOrDeleteReview extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createReview: {
+      updateReview: {
         title: " ",
         comment: " ",
       },
       submitted: false,
+      isDeleted: false,
     };
   }
 
   handleChange = (e) => {
-    const { createReview } = this.state;
-    createReview[e.target.name] = e.target.value;
-    this.setState({ createReview: createReview });
+    const { updateReview } = this.state;
+    updateReview[e.target.name] = e.target.value;
+    this.setState({ updateReview: updateReview });
   };
 
   handleSubmit = () => {
-    this.props.createListing(this.state.createReview);
+    this.props.updateReview(this.state.updateReview);
     this.setState({ submitted: true });
   };
+
+  handleClick = () => {
+    this.props.deleteReview(this.props.review.id)
+    this.setState({ isDeleted: true })
+    console.log("Handle Click!")
+  }
+
+
+
   render() {
     return (
       <>
@@ -35,7 +45,7 @@ export default class UpdateOrDeleteReview extends Component {
               type="text"
               name="name"
               onChange={this.handleChange}
-              value={this.state.createReview.title}
+              value={this.state.updateReview.title}
             />
           </FormGroup>
           <FormGroup row>
@@ -44,12 +54,12 @@ export default class UpdateOrDeleteReview extends Component {
               type="textarea"
               name="text"
               onChange={this.handleChange}
-              value={this.state.createReview.comment}
+              value={this.state.updateReview.comment}
             />
           </FormGroup>
           <Button onClick={this.handleSubmit}>Update</Button>
           {this.state.submitted && <Redirect to="/show" />} &nbsp;&nbsp;
-          <Button onClick={this.handleSubmit}>Delete</Button>
+          <Button onClick={() => this.props.deleteReview(review.id)}>Delete</Button>
           {this.state.submitted && <Redirect to="/show" />}
         </Form>
       </>

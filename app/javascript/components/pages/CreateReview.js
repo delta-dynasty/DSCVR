@@ -21,7 +21,7 @@ export default class Review extends Component {
   };
 
   handleSubmit = () => {
-    this.props.createListing(this.state.createReview);
+    this.props.createReview(this.state.createReview);
     this.setState({ submitted: true });
   };
 
