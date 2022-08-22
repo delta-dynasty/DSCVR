@@ -1,67 +1,71 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 // import { Redirect } from "react-router-dom";
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 
-export default class Home extends Component {
-  render() {
-    return (
-      <>
-        <div>Home</div>
-        <Form>
-          <FormGroup>
-            Outdoors &nbsp;&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>Yes</Label>&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>No</Label>
-          </FormGroup>
-          <FormGroup>
-            Indoors &nbsp;&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>Yes</Label>&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>No</Label>
-          </FormGroup>
-          <FormGroup>
-            Water &nbsp;&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>Yes</Label>&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>No</Label>
-          </FormGroup>
-          <FormGroup>
-            Children &nbsp;&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>Yes</Label>&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>No</Label>
-          </FormGroup> 
-          <FormGroup>
-            Pets &nbsp;&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>Yes</Label>&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>No</Label>
-          </FormGroup>
-          <FormGroup>
-            Food &nbsp;&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>Yes</Label>&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>No</Label>
-          </FormGroup>
-          <FormGroup>
-            Alcohol &nbsp;&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>Yes</Label>&nbsp;&nbsp;
-            <Input type="checkbox" />
-            <Label check>No</Label>
-          </FormGroup>
-          <Button onClick={this.filteredPlaces}>DSCVR Logo</Button>
-          {/* {this.state.submitted && <Redirect to="/index" />} */}
-        </Form>
-        <h3>DSCVR activity, DSCVR fun, DSCVR adventure, DSCVR friendship, DSCVR delicious, DSCVR something new.  </h3>
-      </>
+const Home = () => {
+  const [form, setForm] = useState({
+    outdoors: false,
+    indoors: false,
+    water: false,
+    children: false, 
+    pets: false, 
+    food: false, 
+    alcohol: false,
+  })
+
+  const handleChange = (event) => {
+    setForm(
+      {
+        ...form,
+        [event.target.name]: event.target.checked
+      }
     )
   }
+
+  return (
+    <>
+      <div>Home</div>
+      <Form>
+        <FormGroup>
+          Outdoors &nbsp;&nbsp;&nbsp;
+          <Input type="checkbox" name="outdoors" onChange={(e) => handleChange(e)}/>
+          <Label check>Yes</Label>&nbsp;&nbsp;
+        </FormGroup>
+        <FormGroup>
+          Indoors &nbsp;&nbsp;&nbsp;
+          <Input type="checkbox" name="indoors" onChange={(e) => handleChange(e)}/>
+          <Label check>Yes</Label>&nbsp;&nbsp;
+        </FormGroup>
+        <FormGroup>
+          Water &nbsp;&nbsp;&nbsp;
+          <Input type="checkbox" name="water" onChange={(e) => handleChange(e)} />
+          <Label check>Yes</Label>&nbsp;&nbsp;
+        </FormGroup>
+        <FormGroup>
+          Children &nbsp;&nbsp;&nbsp;
+          <Input type="checkbox" name="children" onChange={(e) => handleChange(e)}/>
+          <Label check>Yes</Label>&nbsp;&nbsp;
+        </FormGroup> 
+        <FormGroup>
+          Pets &nbsp;&nbsp;&nbsp;
+          <Input type="checkbox" name="pets" onChange={(e) => handleChange(e)}/>
+          <Label check>Yes</Label>&nbsp;&nbsp;
+        </FormGroup>
+        <FormGroup>
+          Food &nbsp;&nbsp;&nbsp;
+          <Input type="checkbox" name="food" onChange={(e) => handleChange(e)}/>
+          <Label check>Yes</Label>&nbsp;&nbsp;
+        </FormGroup>
+        <FormGroup>
+          Alcohol &nbsp;&nbsp;&nbsp;
+          <Input type="checkbox" name="alcohol" onChange={(e) => handleChange(e)}/>
+          <Label check>Yes</Label>&nbsp;&nbsp;
+        </FormGroup>
+        <Button>Submit</Button>
+      </Form>
+      <h3>DSCVR activity, DSCVR fun, DSCVR adventure, DSCVR friendship, DSCVR delicious, DSCVR something new.  </h3>
+    </>
+  )
 }
+
+export default Home 
