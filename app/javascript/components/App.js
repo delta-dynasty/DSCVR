@@ -150,8 +150,7 @@ class App extends Component {
       sign_in_route,
       sign_out_route
     } = this.props
-    
-    
+
     return(
       <>
         <Router>
