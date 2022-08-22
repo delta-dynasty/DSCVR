@@ -43,7 +43,7 @@ class Header extends Component {
           }
            {logged_in &&
             <NavItem>
-              <a href='/updateordeletelisting' className="nav-link">Update or Delete a previous listing</a>
+              <a href='/update_or_delete_listing' className="nav-link">Update or Delete a previous listing</a>
             </NavItem>
           }
           {logged_in &&
