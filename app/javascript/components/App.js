@@ -18,8 +18,6 @@ import {
 } from 'react-router-dom'
 import listings from './MockListings'
 
-class App extends Component {
-
 //Search Method
 const filteredPlaces = () => {
   results = {
