@@ -29,8 +29,9 @@ const filteredPlaces = () => {
     food: [],
     alcohol: [],
   }
-//  checked boxes go to eventlistener and then submit(DSCVR) button processes selection and sends it thru the if/else statements. if value = true AND value not already present value.push.
-  //Then process object 
+//  checked boxes go to eventlistener/handler and then submit(DSCVR) button processes selection and sends it thru the if/else statements. if value = true AND value not already present (avoiding duplicates) value.push to new array.
+  // Empty arrays are contained in the results object so we'll then process the object and return all the hits.
+
   // A variable that represents the k/v pairs
 }
 
@@ -39,10 +40,108 @@ class App extends Component {
     super(props)
     this.state = {
       listings: listings
+      // reviews: review
     }
   }
   
+  componentDidMount() {
+    this.readListing()
+    console.log(this.state)
+  }
+  // Fetch calls for listings.
 
+  readListing = () => {
+    fetch("http://localhost:3000/index")
+    .then(response => response.json())
+    .then(listingArr => this.setState({ listing: listingArr }))
+    .catch(errors => console.log("Listing read errors:", errors))
+  }
+
+    createNewListing= (theNewListing) =>{
+    fetch("http://localhost:3000/index",{
+    body: JSON.stringify(theNewListing),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    method:"POST"
+    })
+    .then(response => response.json())
+    .then(() => this.readListing())
+    .catch(errors => console.log("New listing errors: ", errors))
+    }
+  
+    updateListing = (listing, id) => {
+    fetch(`http://localhost:3000/index/${id}`,{
+    body: JSON.stringify(listing),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    method:"PATCH"
+    })
+    .then(response => response.json())
+    .then(()=> this.readListing())
+    .catch(errors => console.log("Update listing errors: ", errors))
+  }
+
+    deleteListing = (id) => {
+    fetch(`http://localhost:3000/index/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(() => this.readListing())
+    .catch(errors => console.log("Delete listing errors:", errors))
+  }
+  
+  // Fetch calls for reviews.
+
+  // readReview = () => {
+  //   fetch("http://localhost:3000/review")
+  //   .then(response => response.json())
+  //   .then(reviewArr => this.setState({ review: reviewArr }))
+  //   .catch(errors => console.log("Review read errors:", errors))
+  // }
+
+  //   createNewReview= (theNewReview) =>{
+  //   fetch("http://localhost:3000/review",{
+  //   body: JSON.stringify(theNewReview),
+  //   headers: {
+  //     "Content-Type": "application/json"
+  //   },
+  //   method:"POST"
+  //   })
+  //   .then(response => response.json())
+  //   .then(() => this.readReview())
+  //   .catch(errors => console.log("New review errors: ", errors))
+  //   }
+  
+  //   updateReview = (review, id) => {
+  //   fetch(`http://localhost:3000/review/${id}`,{
+  //   body: JSON.stringify(listing),
+  //   headers: {
+  //     "Content-Type": "application/json"
+  //   },
+  //   method:"PATCH"
+  //   })
+  //   .then(response => response.json())
+  //   .then(()=> this.readReview())
+  //   .catch(errors => console.log("Update review errors: ", errors))
+  // }
+
+  //   deleteReview = (id) => {
+  //   fetch(`http://localhost:3000/review/${id}`, {
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     method: "DELETE"
+  //   })
+  //   .then(response => response.json())
+  //   .then(() => this.readReview())
+  //   .catch(errors => console.log("Delete review errors:", errors))
+  //   }
+  
   render() {
     const {
       logged_in,
