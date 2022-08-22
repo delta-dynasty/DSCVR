@@ -148,8 +148,8 @@ class App extends Component {
       current_user,
       new_user_route,
       sign_in_route,
-      sign_out_route
-    } = this.props
+      sign_out_route,
+    } = this.props;
 
     return(
       <>
@@ -181,8 +181,8 @@ class App extends Component {
           <Footer />
         </Router>
       </>
-    )
+    );
   }
 }
 
-export default App
+export default App;

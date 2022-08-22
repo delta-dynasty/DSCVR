@@ -16,3 +16,4 @@ describe("When NotFound renders", () => {
     expect(NotFoundHeading.length).toEqual(1)
   })
 })
+
