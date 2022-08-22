@@ -1,7 +1,7 @@
 import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import LoggedInHome from './pages/LoggedInHome'
+import LoggedInHome from './LoggedInHome'
 Enzyme.configure({ adapter: new Adapter() })
 
 describe("When LoggedInHome renders", () => {
