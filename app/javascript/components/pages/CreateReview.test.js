@@ -1,13 +1,32 @@
 import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import Review from './pages/Review'
+import CreateReview from './CreateReview'
 Enzyme.configure({ adapter: new Adapter() })
 
-describe("When Review renders", () => {
+describe("When CreateReview renders", () => {
+  let renderedCreateReview;
+
+  beforeEach(() => {
+    renderedCreateReview = shallow(<CreateReview />)
+  });
+  
   it("displays a heading", () => {
-    const review = shallow(<Review/>)
-    const reviewHeading = review.find("h3")
-    expect(reviewHeading.text()).toEqual("This Should Fail")
+    const CreateReviewHeading = renderedCreateReview.find("h1")
+    expect(CreateReviewHeading.length).toEqual(1)
+  })
+
+  it("displays a form", () => {
+    const formGroup = renderedCreateReview.find("FormGroup")
+    expect(formGroup.length).toEqual(2)
+
+    const formLabel = renderedCreateReview.find("Label")
+    expect(formLabel.length).toEqual(2)
+
+    const formInput = renderedCreateReview.find("Input")
+    expect(formInput.length).toEqual(2)
+
+    const formButton = renderedCreateReview.find("Button")
+    expect(formButton.length).toEqual(1)
   })
 })
