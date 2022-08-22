@@ -51,14 +51,14 @@ class App extends Component {
   // Fetch calls for listings.
 
   readListing = () => {
-    fetch("http://localhost:3000/index")
+    fetch("/index")
     .then(response => response.json())
     .then(listingArr => this.setState({ listing: listingArr }))
     .catch(errors => console.log("Listing read errors:", errors))
   }
 
     createNewListing= (theNewListing) =>{
-    fetch("http://localhost:3000/index",{
+    fetch("/index",{
     body: JSON.stringify(theNewListing),
     headers: {
       "Content-Type": "application/json"
@@ -71,7 +71,7 @@ class App extends Component {
     }
   
     updateListing = (listing, id) => {
-    fetch(`http://localhost:3000/index/${id}`,{
+    fetch(`/index/${id}`,{
     body: JSON.stringify(listing),
     headers: {
       "Content-Type": "application/json"
@@ -84,7 +84,7 @@ class App extends Component {
   }
 
     deleteListing = (id) => {
-    fetch(`http://localhost:3000/index/${id}`, {
+    fetch(`/index/${id}`, {
       headers: {
         "Content-Type": "application/json"
       },
@@ -98,14 +98,14 @@ class App extends Component {
   // Fetch calls for reviews.
 
   // readReview = () => {
-  //   fetch("http://localhost:3000/review")
+  //   fetch("/review")
   //   .then(response => response.json())
   //   .then(reviewArr => this.setState({ review: reviewArr }))
   //   .catch(errors => console.log("Review read errors:", errors))
   // }
 
   //   createNewReview= (theNewReview) =>{
-  //   fetch("http://localhost:3000/review",{
+  //   fetch("/review",{
   //   body: JSON.stringify(theNewReview),
   //   headers: {
   //     "Content-Type": "application/json"
@@ -118,7 +118,7 @@ class App extends Component {
   //   }
   
   //   updateReview = (review, id) => {
-  //   fetch(`http://localhost:3000/review/${id}`,{
+  //   fetch(`/review/${id}`,{
   //   body: JSON.stringify(listing),
   //   headers: {
   //     "Content-Type": "application/json"
@@ -131,7 +131,7 @@ class App extends Component {
   // }
 
   //   deleteReview = (id) => {
-  //   fetch(`http://localhost:3000/review/${id}`, {
+  //   fetch(`/review/${id}`, {
   //     headers: {
   //       "Content-Type": "application/json"
   //     },
