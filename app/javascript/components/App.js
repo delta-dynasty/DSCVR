@@ -29,10 +29,6 @@ const filteredPlaces = () => {
     food: [],
     alcohol: [],
   }
-//  checked boxes go to eventlistener/handler and then submit(DSCVR) button processes selection and sends it thru the if/else statements. if value = true AND value not already present (avoiding duplicates) value.push to new array.
-  // Empty arrays are contained in the results object so we'll then process the object and return all the hits.
-
-  // A variable that represents the k/v pairs
 }
 
 class App extends Component {
@@ -40,7 +36,6 @@ class App extends Component {
     super(props)
     this.state = {
       listings: listings
-      // reviews: review
     }
   }
   
@@ -48,7 +43,6 @@ class App extends Component {
     this.readListing()
     console.log(this.state)
   }
-  // Fetch calls for listings.
 
   readListing = () => {
     fetch("/listings")

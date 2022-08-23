@@ -28,6 +28,16 @@ class ListingsController < ApplicationController
         listing.destroy
         render json: listing
     end
+
+    def search
+        # input "outdoors,pets"
+        values = params[:values].split(",")
+        # how do we return search listings based on the values received
+        # after split we haver an array. ["outdoors","pets"]
+        # for each string in the array query listings that are true for that value
+        render json: values.to_json
+    end
+
 end
 
 private

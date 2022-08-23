@@ -22,6 +22,29 @@ const Home = () => {
     )
   }
 
+  const handleSubmit = (event) => {
+    console.log(form)
+      let values = {values: getKeyByValue(form, true)}
+      let query = new URLSearchParams(values).toString()
+        fetch (`/search?${query}`)
+        .then(response => response.json())
+        .then((data)=> console.log(data))
+        event.preventDefault()
+    }
+
+  const getKeyByValue = (object, value) => {
+      return Object.keys(object).filter(key => object[key] === value);
+    }
+
+    /* 
+    input {outdoors: true, inside: false}
+
+    filter method 
+
+    send a search request to rails 
+    
+    
+    */ 
   return (
     <>
       <div>Home</div>
@@ -61,7 +84,7 @@ const Home = () => {
           <Input type="checkbox" name="alcohol" onChange={(e) => handleChange(e)}/>
           <Label check>Yes</Label>&nbsp;&nbsp;
         </FormGroup>
-        <Button>Submit</Button>
+        <Button onClick={(e) => handleSubmit(e)}>Submit</Button>
       </Form>
       <h3>DSCVR activity, DSCVR fun, DSCVR adventure, DSCVR friendship, DSCVR delicious, DSCVR something new.  </h3>
     </>
