@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
         if review.valid?
             render json: review
         else
-            render json: review.errors, status: :422
+            render json: review.errors, status: 422
         end
     end
 
