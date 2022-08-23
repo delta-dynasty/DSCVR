@@ -19,7 +19,7 @@ class ListingsController < ApplicationController
         if listing.valid?
             render json: listing
         else
-            render json: listing.errors, status: :422
+            render json: listing.errors, status: 422
         end
     end
 
