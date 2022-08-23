@@ -22,6 +22,11 @@ const Home = () => {
     )
   }
 
+  const handleSubmit = (event) => {
+    console.log(form)
+    event.preventDefault()
+  }
+
   return (
     <>
       <div>Home</div>
@@ -61,7 +66,8 @@ const Home = () => {
           <Input type="checkbox" name="alcohol" onChange={(e) => handleChange(e)}/>
           <Label check>Yes</Label>&nbsp;&nbsp;
         </FormGroup>
-        <Button>Submit</Button>
+        <Button onClick={(e) => handleSubmit(e)}>Submit</Button>
+         {/* { <Redirect to ='/index'/>} */}
       </Form>
       <h3>DSCVR activity, DSCVR fun, DSCVR adventure, DSCVR friendship, DSCVR delicious, DSCVR something new.  </h3>
     </>

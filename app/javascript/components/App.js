@@ -17,23 +17,23 @@ import {
   Switch
 } from 'react-router-dom'
 import listings from './MockListings'
+import { ProgressPlugin } from 'webpack'
 
 //Search Method
-const filteredPlaces = () => {
-  results = {
-    outside: [],
-    inside: [],
-    water: [],
-    children: [],
-    pets: [],
-    food: [],
-    alcohol: [],
-  }
-//  checked boxes go to eventlistener/handler and then submit(DSCVR) button processes selection and sends it thru the if/else statements. if value = true AND value not already present (avoiding duplicates) value.push to new array.
-  // Empty arrays are contained in the results object so we'll then process the object and return all the hits.
 
-  // A variable that represents the k/v pairs
-}
+// Bring state object to App.js and process state into new filter method (JS) that returns listings matching the true values. 
+// Push results into new array of listings (index(search results)). 
+  
+  // stateobject.each do |data|
+  // let results = [],
+  // if data true?
+  // push results
+
+  //Pseudo
+  // [arrOfBooleans].each do |value|
+  // if value true?
+  // p value
+
 
 class App extends Component {
   constructor(props) {
@@ -43,7 +43,17 @@ class App extends Component {
       // reviews: review
     }
   }
-  
+
+  // functional props 
+  filteredPlaces = (props, value) => {
+    this.setState(this.home.props)
+    let resultsArr = []
+    if (value === true) {
+      resultsArr.push(value)
+    } 
+    return resultsArr
+  }
+     
   componentDidMount() {
     this.readListing()
     console.log(this.state)
