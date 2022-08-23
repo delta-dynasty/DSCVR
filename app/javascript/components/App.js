@@ -51,14 +51,14 @@ class App extends Component {
   // Fetch calls for listings.
 
   readListing = () => {
-    fetch("/index")
+    fetch("/listings")
     .then(response => response.json())
     .then(listingArr => this.setState({ listing: listingArr }))
     .catch(errors => console.log("Listing read errors:", errors))
   }
 
     createNewListing= (theNewListing) =>{
-    fetch("/index",{
+    fetch("/listings",{
     body: JSON.stringify(theNewListing),
     headers: {
       "Content-Type": "application/json"
@@ -71,7 +71,7 @@ class App extends Component {
     }
   
     updateListing = (listing, id) => {
-    fetch(`/index/${id}`,{
+    fetch(`/listings/${id}`,{
     body: JSON.stringify(listing),
     headers: {
       "Content-Type": "application/json"
@@ -84,7 +84,7 @@ class App extends Component {
   }
 
     deleteListing = (id) => {
-    fetch(`/index/${id}`, {
+    fetch(`/listings/${id}`, {
       headers: {
         "Content-Type": "application/json"
       },
@@ -162,9 +162,8 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/about" component={About} />
               <Route path="/create_listing" render={() => <CreateListing createListing={this.createListing} current_user = {this.props.current_user}/>}/>
-              <Route path="/index" component={Index} />
+              <Route path="/listings_index" component={Index} />
               <Route path="/logged_in_home" component={LoggedInHome} />
-              <Route path="/not_found" component={NotFound} />
               <Route path="/review" render={() => <Review createReview={this.createReview} current_user = {this.props.current_user}/>}/>
               <Route path="/update_or_delete_review/:id" render={(props) => {
                 let id = +props.match.params.id
@@ -177,6 +176,7 @@ class App extends Component {
                 let listing = this.state.reviews.find(listing => listing.id === id)
                 return <UpdateOrDeleteListing {...props} listing={listing} />
               }}/>
+              <Route path="/not_found" component={NotFound} />
             </Switch>
           <Footer />
         </Router>
