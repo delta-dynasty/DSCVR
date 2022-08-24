@@ -30,12 +30,10 @@ class ListingsController < ApplicationController
     end
 
     def search
-        # input "outdoors,pets"
-        values = params[:values].split(",")
-        # how do we return search listings based on the values received
-        # after split we haver an array. ["outdoors","pets"]
-        # for each string in the array query listings that are true for that value
-        render json: values.to_json
+        options = params[:values]
+        options_query = options.split(',').join(' and ')<<(' = true') 
+        search_results = Listing.where(options_query)
+        render json: search_results.to_json
     end
 
 end

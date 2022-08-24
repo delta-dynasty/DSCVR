@@ -5,7 +5,7 @@ import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 const Home = () => {
   const [form, setForm] = useState({
     outside: false,
-    indoors: false,
+    inside: false,
     water: false,
     children: false, 
     pets: false, 
@@ -23,13 +23,13 @@ const Home = () => {
   }
 
   const handleSubmit = (event) => {
+    event.preventDefault()
     console.log(form)
       let values = {values: getKeyByValue(form, true)}
       let query = new URLSearchParams(values).toString()
         fetch (`/search?${query}`)
         .then(response => response.json())
         .then((data)=> console.log(data))
-        event.preventDefault()
     }
 
   const getKeyByValue = (object, value) => {
@@ -55,8 +55,8 @@ const Home = () => {
           <Label check>Yes</Label>&nbsp;&nbsp;
         </FormGroup>
         <FormGroup>
-          Indoors &nbsp;&nbsp;&nbsp;
-          <Input type="checkbox" name="indoors" onChange={(e) => handleChange(e)}/>
+          Inside &nbsp;&nbsp;&nbsp;
+          <Input type="checkbox" name="inside" onChange={(e) => handleChange(e)}/>
           <Label check>Yes</Label>&nbsp;&nbsp;
         </FormGroup>
         <FormGroup>
