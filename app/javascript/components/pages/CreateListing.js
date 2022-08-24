@@ -14,7 +14,7 @@ export default class CreateListing extends Component {
         description: " ",
         phone: " ",
         hours: " ",
-        outside: " ",
+        outdoors: " ",
         inside: " ",
         water: " ",
         children: " ",

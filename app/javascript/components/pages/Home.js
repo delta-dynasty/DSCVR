@@ -4,7 +4,7 @@ import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 
 const Home = () => {
   const [form, setForm] = useState({
-    outdoors: false,
+    outside: false,
     indoors: false,
     water: false,
     children: false, 
@@ -50,8 +50,8 @@ const Home = () => {
       <div>Home</div>
       <Form>
         <FormGroup>
-          Outdoors &nbsp;&nbsp;&nbsp;
-          <Input type="checkbox" name="outdoors" onChange={(e) => handleChange(e)}/>
+          Outside &nbsp;&nbsp;&nbsp;
+          <Input type="checkbox" name="outside" onChange={(e) => handleChange(e)}/>
           <Label check>Yes</Label>&nbsp;&nbsp;
         </FormGroup>
         <FormGroup>
