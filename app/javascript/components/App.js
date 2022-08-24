@@ -14,17 +14,16 @@ import UpdateOrDeleteListing from './pages/UpdateOrDeleteListing'
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Redirect
+  Switch
 } from 'react-router-dom'
 import listings from './MockListings'
-
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       listings: listings
+      // reviews: review
     }
   }
   
@@ -32,6 +31,7 @@ class App extends Component {
     this.readListing()
     console.log(this.state)
   }
+  // Fetch calls for listings.
 
   readListing = () => {
     fetch("/listings")
@@ -41,42 +41,42 @@ class App extends Component {
   }
 
     createNewListing= (theNewListing) =>{
-      fetch("/listings",{
-      body: JSON.stringify(theNewListing),
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method:"POST"
-      })
-      .then(response => response.json())
-      .then(() => this.readListing())
-      .catch(errors => console.log("New listing errors: ", errors))
+    fetch("/listings",{
+    body: JSON.stringify(theNewListing),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    method:"POST"
+    })
+    .then(response => response.json())
+    .then(() => this.readListing())
+    .catch(errors => console.log("New listing errors: ", errors))
     }
   
     updateListing = (listing, id) => {
-      fetch(`/listings/${id}`,{
-      body: JSON.stringify(listing),
+    fetch(`/listings/${id}`,{
+    body: JSON.stringify(listing),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    method:"PATCH"
+    })
+    .then(response => response.json())
+    .then(()=> this.readListing())
+    .catch(errors => console.log("Update listing errors: ", errors))
+  }
+
+    deleteListing = (id) => {
+    fetch(`/listings/${id}`, {
       headers: {
         "Content-Type": "application/json"
       },
-      method:"PATCH"
-      })
-      .then(response => response.json())
-      .then(()=> this.readListing())
-      .catch(errors => console.log("Update listing errors: ", errors))
-    }
-
-    deleteListing = (id) => {
-      fetch(`/listings/${id}`, {
-        headers: {
-          "Content-Type": "application/json"
-        },
-        method: "DELETE"
-      })
-      .then(response => response.json())
-      .then(() => this.readListing())
-      .catch(errors => console.log("Delete listing errors:", errors))
-    }
+      method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(() => this.readListing())
+    .catch(errors => console.log("Delete listing errors:", errors))
+  }
   
   // Fetch calls for reviews.
 
@@ -124,7 +124,6 @@ class App extends Component {
   //   .then(() => this.readReview())
   //   .catch(errors => console.log("Delete review errors:", errors))
   //   }
-
 
   handleSubmit = (event, form) => {
     event.preventDefault()

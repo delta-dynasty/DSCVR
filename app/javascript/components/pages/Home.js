@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom';
 // import { Redirect } from "react-router-dom";
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
 
@@ -54,7 +55,8 @@ const Home = (props) => {
           Alcohol
           <Input type="checkbox" name="alcohol" onChange={(e) => handleChange(e)}/>
         </FormGroup>
-        <Button onClick={(e) => props.handleSubmit(e, form)}>Submit</Button>
+        <NavLink to={`/listings_index`}>
+        <Button onClick={(e) => props.handleSubmit(e, form)}>Submit</Button></NavLink>
       </Form>
       <h3>DSCVR activity, DSCVR fun, DSCVR adventure, DSCVR friendship, DSCVR delicious, DSCVR something new.  </h3>
     </main>
