@@ -18,18 +18,18 @@ import {
 } from 'react-router-dom'
 import listings from './MockListings'
 
-//Search Method
-const filteredPlaces = () => {
-  results = {
-    outside: [],
-    inside: [],
-    water: [],
-    children: [],
-    pets: [],
-    food: [],
-    alcohol: [],
-  }
-}
+// //Search Method
+// const filteredPlaces = () => {
+//   results = {
+//     outside: [],
+//     inside: [],
+//     water: [],
+//     children: [],
+//     pets: [],
+//     food: [],
+//     alcohol: [],
+//   }
+// }
 
 class App extends Component {
   constructor(props) {
