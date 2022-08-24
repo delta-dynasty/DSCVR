@@ -14,22 +14,11 @@ import UpdateOrDeleteListing from './pages/UpdateOrDeleteListing'
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom'
 import listings from './MockListings'
 
-// //Search Method
-// const filteredPlaces = () => {
-//   results = {
-//     outside: [],
-//     inside: [],
-//     water: [],
-//     children: [],
-//     pets: [],
-//     food: [],
-//     alcohol: [],
-//   }
-// }
 
 class App extends Component {
   constructor(props) {
@@ -52,42 +41,42 @@ class App extends Component {
   }
 
     createNewListing= (theNewListing) =>{
-    fetch("/listings",{
-    body: JSON.stringify(theNewListing),
-    headers: {
-      "Content-Type": "application/json"
-    },
-    method:"POST"
-    })
-    .then(response => response.json())
-    .then(() => this.readListing())
-    .catch(errors => console.log("New listing errors: ", errors))
-    }
-  
-    updateListing = (listing, id) => {
-    fetch(`/listings/${id}`,{
-    body: JSON.stringify(listing),
-    headers: {
-      "Content-Type": "application/json"
-    },
-    method:"PATCH"
-    })
-    .then(response => response.json())
-    .then(()=> this.readListing())
-    .catch(errors => console.log("Update listing errors: ", errors))
-  }
-
-    deleteListing = (id) => {
-    fetch(`/listings/${id}`, {
+      fetch("/listings",{
+      body: JSON.stringify(theNewListing),
       headers: {
         "Content-Type": "application/json"
       },
-      method: "DELETE"
-    })
-    .then(response => response.json())
-    .then(() => this.readListing())
-    .catch(errors => console.log("Delete listing errors:", errors))
-  }
+      method:"POST"
+      })
+      .then(response => response.json())
+      .then(() => this.readListing())
+      .catch(errors => console.log("New listing errors: ", errors))
+    }
+  
+    updateListing = (listing, id) => {
+      fetch(`/listings/${id}`,{
+      body: JSON.stringify(listing),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method:"PATCH"
+      })
+      .then(response => response.json())
+      .then(()=> this.readListing())
+      .catch(errors => console.log("Update listing errors: ", errors))
+    }
+
+    deleteListing = (id) => {
+      fetch(`/listings/${id}`, {
+        headers: {
+          "Content-Type": "application/json"
+        },
+        method: "DELETE"
+      })
+      .then(response => response.json())
+      .then(() => this.readListing())
+      .catch(errors => console.log("Delete listing errors:", errors))
+    }
   
   // Fetch calls for reviews.
 
@@ -136,6 +125,26 @@ class App extends Component {
   //   .catch(errors => console.log("Delete review errors:", errors))
   //   }
 
+
+  handleSubmit = (event, form) => {
+    event.preventDefault()
+    let values = {values: this.getKeyByValue(form, true)}
+    let query = new URLSearchParams(values).toString()
+    fetch (`/search?${query}`)
+    .then(response => response.json())
+    .then((data)=> this.setState({listings: data}))
+    return <Redirect to={
+      {
+        pathname: '/listings_index', 
+        state: {listings: this.state.listings}
+      }
+    }/>
+  };
+
+  getKeyByValue = (object, value) => {
+      return Object.keys(object).filter(key => object[key] === value);
+  };
+
   render() {
     const {
       logged_in,
@@ -153,10 +162,16 @@ class App extends Component {
             This is the Home page
           </h1>
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" render={() => <Home handleSubmit={this.handleSubmit}/>}/>
               <Route path="/about" component={About} />
               <Route path="/create_listing" render={() => <CreateListing createListing={this.createListing} current_user = {this.props.current_user}/>}/>
-              <Route path="/listings_index" component={Index} />
+              <Route path="/listings_index" 
+                render={() => <Index listings={this.state.listings}/>}
+              /*
+            pass the query method as a prop into home.js
+            save results from home.js to state
+            */
+              />
               <Route path="/logged_in_home" component={LoggedInHome} />
               <Route path="/review" render={() => <Review createReview={this.createReview} current_user = {this.props.current_user}/>}/>
               <Route path="/update_or_delete_review/:id" render={(props) => {

@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 // import { Redirect } from "react-router-dom";
 import { Form, FormGroup, Input, Label, Button } from "reactstrap";
-import ToggleButton from 'react-bootstrap/ToggleButton'
 
-const Home = () => {
+const Home = (props) => {
   const [form, setForm] = useState({
     outside: false,
     inside: false,
@@ -21,32 +20,8 @@ const Home = () => {
         [event.target.name]: event.target.checked
       }
     )
-
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log(form)
-      let values = {values: getKeyByValue(form, true)}
-      let query = new URLSearchParams(values).toString()
-        fetch (`/search?${query}`)
-        .then(response => response.json())
-        .then((data)=> console.log(data))
-    }
-
-  const getKeyByValue = (object, value) => {
-      return Object.keys(object).filter(key => object[key] === value);
-    }
-
-    /* 
-    input {outdoors: true, inside: false}
-
-    filter method 
-
-    send a search request to rails 
-    
-    
-    */ 
   return (
     <main className="home">
       <div>Home</div>
@@ -79,7 +54,7 @@ const Home = () => {
           Alcohol
           <Input type="checkbox" name="alcohol" onChange={(e) => handleChange(e)}/>
         </FormGroup>
-        <Button onClick={(e) => handleSubmit(e)}>Submit</Button>
+        <Button onClick={(e) => props.handleSubmit(e, form)}>Submit</Button>
       </Form>
       <h3>DSCVR activity, DSCVR fun, DSCVR adventure, DSCVR friendship, DSCVR delicious, DSCVR something new.  </h3>
     </main>

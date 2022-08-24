@@ -10,7 +10,7 @@ class Index extends Component {
         <h2></h2>
           <div>
             <Row sm='3'>
-            {this.props.listing && this.props.listing.map(listing => {
+            {this.props.listings && this.props.listings.map(listing => {
               return (
                 <Card key={listing.id}
                 style={{
