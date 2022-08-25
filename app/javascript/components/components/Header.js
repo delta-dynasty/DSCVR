@@ -14,7 +14,6 @@ class Header extends Component {
     console.log("current_user:", current_user)
     return(
       <>
-        <h1>Feel free to DSCVR</h1>
         <Nav>
           {
             <NavItem>

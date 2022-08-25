@@ -2,12 +2,11 @@
     .search {
         display: grid; 
         grid-template-columns: repeat(7,1fr);
+        // center the search bar
+        justify-content: center;
         .select{
             &.true{
                 color:red;
-            }
-            input{
-                opacity:0;
             }
         }
     }
