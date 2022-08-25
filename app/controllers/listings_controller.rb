@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
     def index
-        listings = Listing.all;
+        listings = Listing.all
         render json: listings
     end
 
@@ -31,16 +31,18 @@ class ListingsController < ApplicationController
 
     def search
         options = params[:values]
-        options_query = options.split(',').join(' and ')<<(' = true') 
-        search_results = Listing.where(options_query)
+        if options.blank?
+            search_results = Listing.all
+        else 
+            options_query = options.split(',').join(' and ')<<(' = true') 
+            search_results = Listing.where(options_query)
+        end
         render json: search_results.to_json
-        # redirect_to '/listings_index', :notice => "Search results" 
-        # return search_results
     end
+    
+    private
 
-end
-
-private
-def listing_params
-    params.require(:listing).permit(:name, :street, :city, :state, :description, :phone, :hours, :outside, :inside, :water, :children, :pets, :food, :alcohol, :image, :user_id)
+    def listing_params
+        params.require(:listing).permit(:name, :street, :city, :state, :description, :phone, :hours, :outside, :inside, :water, :children, :pets, :food, :alcohol, :image, :user_id)
+    end
 end
