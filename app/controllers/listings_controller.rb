@@ -34,6 +34,8 @@ class ListingsController < ApplicationController
         options_query = options.split(',').join(' and ')<<(' = true') 
         search_results = Listing.where(options_query)
         render json: search_results.to_json
+        # redirect_to '/listings_index', :notice => "Search results" 
+        # return search_results
     end
 
 end

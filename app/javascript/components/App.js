@@ -14,7 +14,8 @@ import UpdateOrDeleteListing from './pages/UpdateOrDeleteListing'
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom'
 import listings from './MockListings'
 
@@ -125,14 +126,16 @@ class App extends Component {
   //   .catch(errors => console.log("Delete review errors:", errors))
   //   }
 
-  handleSubmit = (event, form) => {
+
+
+  handleSubmit = (event, form,) => {
     event.preventDefault()
     let values = {values: this.getKeyByValue(form, true)}
     let query = new URLSearchParams(values).toString()
     fetch (`/search?${query}`)
     .then(response => response.json())
     .then((data)=> this.setState({listings: data}))
-    return <Redirect to={
+      return <Redirect to={
       {
         pathname: '/listings_index', 
         state: {listings: this.state.listings}
@@ -153,6 +156,7 @@ class App extends Component {
       sign_out_route,
     } = this.props;
 
+    
     return(
       <>
         <Router>

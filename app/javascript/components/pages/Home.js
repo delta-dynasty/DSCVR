@@ -56,7 +56,8 @@ const Home = (props) => {
           <Input type="checkbox" name="alcohol" onChange={(e) => handleChange(e)}/>
         </FormGroup>
         <NavLink to={`/listings_index`}>
-        <Button onClick={(e) => props.handleSubmit(e, form)}>Submit</Button></NavLink>
+        <Button onClick={(e) => props.handleSubmit(e, form)}>Submit</Button>
+        </NavLink>
       </Form>
       <h3>DSCVR activity, DSCVR fun, DSCVR adventure, DSCVR friendship, DSCVR delicious, DSCVR something new.  </h3>
     </main>
