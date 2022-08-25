@@ -23,7 +23,6 @@ const Home = (props) => {
 
   return (
     <main className="home">
-      <div>Home</div>
       <Form className="search">
         <FormGroup className={`select ${form.outside ? 'true':'false'}`}>
           Outside
@@ -33,27 +32,27 @@ const Home = (props) => {
           Inside
           <Input type="checkbox" name="inside" onChange={(e) => handleChange(e)}/>
         </FormGroup>
-        <FormGroup>
+        <FormGroup className={`select ${form.water ? 'true':'false'}`}>
           Water
           <Input type="checkbox" name="water" onChange={(e) => handleChange(e)} />
         </FormGroup>
-        <FormGroup>
+        <FormGroup className={`select ${form.children ? 'true':'false'}`}>
           Children
           <Input type="checkbox" name="children" onChange={(e) => handleChange(e)}/>
         </FormGroup> 
-        <FormGroup>
+        <FormGroup className={`select ${form.pets ? 'true':'false'}`}>
           Pets
           <Input type="checkbox" name="pets" onChange={(e) => handleChange(e)}/>
         </FormGroup>
-        <FormGroup>
+        <FormGroup className={`select ${form.food ? 'true':'false'}`}>
           Food
           <Input type="checkbox" name="food" onChange={(e) => handleChange(e)}/>
         </FormGroup>
-        <FormGroup>
+        <FormGroup className={`select ${form.alcohol ? 'true':'false'}`}>
           Alcohol
           <Input type="checkbox" name="alcohol" onChange={(e) => handleChange(e)}/>
         </FormGroup>
-        <Button onClick={(e) => props.handleSubmit(e, form)}>Submit</Button>
+        <Button className="button" color="primary" onClick={(e) => props.handleSubmit(e, form)}>Submit</Button>
       </Form>
       <h3>DSCVR activity, DSCVR fun, DSCVR adventure, DSCVR friendship, DSCVR delicious, DSCVR something new.  </h3>
     </main>
