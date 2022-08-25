@@ -14,46 +14,21 @@ import UpdateOrDeleteListing from './pages/UpdateOrDeleteListing'
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
 } from 'react-router-dom'
-import listings from './MockListings'
-
-//Search Method
-const filteredPlaces = () => {
-  results = {
-    outside: [],
-    inside: [],
-    water: [],
-    children: [],
-    pets: [],
-    food: [],
-    alcohol: [],
-  }
-//  checked boxes go to eventlistener/handler and then submit(DSCVR) button processes selection and sends it thru the if/else statements. if value = true AND value not already present (avoiding duplicates) value.push to new array.
-  // Empty arrays are contained in the results object so we'll then process the object and return all the hits.
-
-  // A variable that represents the k/v pairs
-}
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      listings: listings
-      // reviews: review
+      listings: []
     }
   }
-  
-  componentDidMount() {
-    this.readListing()
-    console.log(this.state)
-  }
-  // Fetch calls for listings.
 
   readListing = () => {
     fetch("/listings")
     .then(response => response.json())
-    .then(listingArr => this.setState({ listing: listingArr }))
+    .then(listingArr => this.setState({ listings: listingArr }))
     .catch(errors => console.log("Listing read errors:", errors))
   }
 
@@ -142,6 +117,21 @@ class App extends Component {
   //   .catch(errors => console.log("Delete review errors:", errors))
   //   }
 
+
+
+  handleSubmit = (event, form,) => {
+    event.preventDefault()
+    let values = { values: this.getKeyByValue(form, true) }
+    let query = new URLSearchParams(values).toString()
+    fetch(`/search?${query}`)
+      .then(response => response.json())
+      .then((data) => this.setState({ listings: data }))
+  };
+
+  getKeyByValue = (object, value) => {
+      return Object.keys(object).filter(key => object[key] === value);
+  };
+
   render() {
     const {
       logged_in,
@@ -155,28 +145,32 @@ class App extends Component {
       <>
         <Router>
           <Header {...this.props} />
-          <h1>
-            This is the Home page
-          </h1>
+            {this.state.listings.length > 0 && (
+              <Index listings={this.state.listings}/>
+            )}
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/about" component={About} />
-              <Route path="/create_listing" render={() => <CreateListing createListing={this.createListing} current_user = {this.props.current_user}/>}/>
-              <Route path="/listings_index" component={Index} />
-              <Route path="/logged_in_home" component={LoggedInHome} />
-              <Route path="/review" render={() => <Review createReview={this.createReview} current_user = {this.props.current_user}/>}/>
-              <Route path="/update_or_delete_review/:id" render={(props) => {
-                let id = +props.match.params.id
-                let review = this.state.reviews.find(review => review.id === id)
-                return <UpdateOrDeleteReview {...props} review={review} />
-              }}/>
-              <Route path="/show" component={Show} />
-              <Route path="/update_or_delete_listing/:id" render={(props) => {
-                let id = +props.match.params.id
-                let listing = this.state.reviews.find(listing => listing.id === id)
-                return <UpdateOrDeleteListing {...props} listing={listing} />
-              }}/>
-              <Route path="/not_found" component={NotFound} />
+            <Route exact path="/" render={() => <Home handleSubmit={this.handleSubmit}/>}/>
+            <Route path="/about" component={About} />
+            <Route path="/create_listing"
+              render={() => <CreateListing createListing={this.createListing} current_user={this.props.current_user} />} />
+            <Route path="/listings_index" 
+              render={() => <Index listings={this.state.listings}/>}
+              />
+            <Route path="/logged_in_home" component={LoggedInHome} />
+            <Route path="/review"
+              render={() => <Review createReview={this.createReview} current_user={this.props.current_user} />} />
+            <Route path="/update_or_delete_review/:id" render={(props) => {
+              let id = +props.match.params.id
+              let review = this.state.reviews.find(review => review.id === id)
+              return <UpdateOrDeleteReview {...props} review={review} />
+            }}/>
+            <Route path="/show" component={Show} />
+            <Route path="/update_or_delete_listing/:id" render={(props) => {
+              let id = +props.match.params.id
+              let listing = this.state.reviews.find(listing => listing.id === id)
+              return <UpdateOrDeleteListing {...props} listing={listing} />
+            }}/>
+            <Route path="/not_found" component={NotFound} />
             </Switch>
           <Footer />
         </Router>
