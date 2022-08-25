@@ -15,7 +15,7 @@ let listings = [
     pets: true,
     food: false,
     alcohol: false,
-    image: 'text',
+    image: 'https://images.unsplash.com/photo-1585938389612-a552a28d6914?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGFya3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
     },
     {
     id: 2,

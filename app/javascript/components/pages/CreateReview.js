@@ -2,30 +2,34 @@ import React, { Component } from 'react'
 import { Redirect } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-export default class Review extends Component {
+export default class CreateReview extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createReview: {
-        title: " ",
-        comment: " ",
+      form: {
+        title: "",
+        comment: "",
+        user_id: this.props.current_user.id,
+        // listing_id: this.props.location.state
       },
       submitted: false,
     };
   }
   
   handleChange = (e) => {
-    const { createReview } = this.state;
-    createReview[e.target.name] = e.target.value;
-    this.setState({ createReview: createReview });
+    const { form } = this.state;
+    form[e.target.name] = e.target.value;
+    this.setState({ form: form });
   };
 
   handleSubmit = () => {
-    this.props.createReview(this.state.createReview);
+    this.props.createReview(this.state.form);
     this.setState({ submitted: true });
   };
 
   render() {
+    // const { id } = this.props.location
+    // console.log(this.props.location.state)
     return (
       <>
         <h1>Create a Review</h1>
@@ -36,7 +40,7 @@ export default class Review extends Component {
               type="text"
               name="name"
               onChange={this.handleChange}
-              value={this.state.createReview.title}
+              // value={this.state.createReview.title}
             />
           </FormGroup>
           <FormGroup row>
@@ -45,7 +49,7 @@ export default class Review extends Component {
               type="textarea"
               name="text"
               onChange={this.handleChange}
-              value={this.state.createReview.comment}
+              // value={this.state.createReview.comment}
             />
           </FormGroup>
           <Button onClick={this.handleSubmit}>Submit</Button>

@@ -7,7 +7,7 @@ import Home from './pages/Home'
 import Index from './pages/Index'
 import LoggedInHome from './pages/LoggedInHome'
 import NotFound from './pages/NotFound'
-import Review from './pages/CreateReview'
+import CreateReview from './pages/CreateReview'
 import UpdateOrDeleteReview from './pages/UpdateOrDeleteReview'
 import Show from './pages/Show'
 import UpdateOrDeleteListing from './pages/UpdateOrDeleteListing'
@@ -16,21 +16,30 @@ import {
   Route,
   Switch,
 } from 'react-router-dom'
+import reviews from './MockReviews'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      listings: []
+      listings: [],
+      reviews: reviews
     }
   }
-
+  
   readListing = () => {
     fetch("/listings")
     .then(response => response.json())
     .then(listingArr => this.setState({ listings: listingArr }))
     .catch(errors => console.log("Listing read errors:", errors))
   }
+
+  // readListing = () => {
+  //   fetch("/index")
+  //   .then(response => response.json())
+  //   .then(listingArr => this.setState({ listing: listingArr }))
+  //   .catch(errors => console.log("Listing read errors:", errors))
+  // }
 
     createNewListing= (theNewListing) =>{
     fetch("/listings",{
@@ -72,50 +81,55 @@ class App extends Component {
   
   // Fetch calls for reviews.
 
-  // readReview = () => {
-  //   fetch("/review")
-  //   .then(response => response.json())
-  //   .then(reviewArr => this.setState({ review: reviewArr }))
-  //   .catch(errors => console.log("Review read errors:", errors))
+  // componentDidMount() {
+  //   this.readReview()
+  //   console.log(this.state)
   // }
 
-  //   createNewReview= (theNewReview) =>{
-  //   fetch("/review",{
-  //   body: JSON.stringify(theNewReview),
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   },
-  //   method:"POST"
-  //   })
-  //   .then(response => response.json())
-  //   .then(() => this.readReview())
-  //   .catch(errors => console.log("New review errors: ", errors))
-  //   }
+  readReview = () => {
+    fetch("/reviews")
+    .then(response => response.json())
+    .then(reviewArr => this.setState({ review: reviewArr }))
+    .catch(errors => console.log("Review read errors:", errors))
+  }
+
+    createNewReview= (theNewReview, listingID) =>{
+    fetch(`/reviews`,{
+    body: JSON.stringify(theNewReview),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    method:"POST"
+    })
+    .then(response => response.json())
+    .then(() => this.readReview())
+    .catch(errors => console.log("New review errors: ", errors))
+    }
   
-  //   updateReview = (review, id) => {
-  //   fetch(`/review/${id}`,{
-  //   body: JSON.stringify(listing),
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   },
-  //   method:"PATCH"
-  //   })
-  //   .then(response => response.json())
-  //   .then(()=> this.readReview())
-  //   .catch(errors => console.log("Update review errors: ", errors))
-  // }
+    updateReview = (review, id) => {
+    fetch(`/reviews/${id}`,{
+    body: JSON.stringify(review),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    method:"PATCH"
+    })
+    .then(response => response.json())
+    .then(()=> this.readReview())
+    .catch(errors => console.log("Update review errors: ", errors))
+    }
 
-  //   deleteReview = (id) => {
-  //   fetch(`/review/${id}`, {
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     method: "DELETE"
-  //   })
-  //   .then(response => response.json())
-  //   .then(() => this.readReview())
-  //   .catch(errors => console.log("Delete review errors:", errors))
-  //   }
+    deleteReview = (id) => {
+    fetch(`/reviews/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(() => this.readReview())
+    .catch(errors => console.log("Delete review errors:", errors))
+    }
 
 
 
@@ -141,6 +155,8 @@ class App extends Component {
       sign_out_route,
     } = this.props;
 
+    console.log(this.props)
+
     return(
       <>
         <Router>
@@ -157,14 +173,23 @@ class App extends Component {
               render={() => <Index listings={this.state.listings}/>}
               />
             <Route path="/logged_in_home" component={LoggedInHome} />
-            <Route path="/review"
-              render={() => <Review createReview={this.createReview} current_user={this.props.current_user} />} />
+            <Route path="/create_review"
+              render={() => <CreateReview createReview={this.createReview} current_user={this.props.current_user} />} />
             <Route path="/update_or_delete_review/:id" render={(props) => {
               let id = +props.match.params.id
               let review = this.state.reviews.find(review => review.id === id)
               return <UpdateOrDeleteReview {...props} review={review} />
             }}/>
-            <Route path="/show" component={Show} />
+            <Route path="/listing/:id" render={(props) => {
+                let id = +props.match.params.id
+                let listing = this.state.listings.find(listing => listing.id === id)
+                return( 
+                <Show 
+                {...props} 
+                listing={listing}
+                />
+                )
+              }} />
             <Route path="/update_or_delete_listing/:id" render={(props) => {
               let id = +props.match.params.id
               let listing = this.state.reviews.find(listing => listing.id === id)
