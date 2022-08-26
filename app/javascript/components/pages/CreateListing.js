@@ -41,7 +41,6 @@ export default class CreateListing extends Component {
   };
 
   render() {
-    console.log(this.props.current_user.id);
     return (
       <>
         <h1>Create Listing</h1>
