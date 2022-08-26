@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
+
 export default class CreateListing extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +23,7 @@ export default class CreateListing extends Component {
         food: " ",
         alcohol: " ",
         image: " ",
+        user_id: this.props.current_user.id,
       },
       submitted: false,
     };
@@ -34,7 +36,7 @@ export default class CreateListing extends Component {
   };
 
   handleSubmit = () => {
-    this.props.createListing(this.state.createListing);
+    this.props.createNewListing(this.state.createListing);
     this.setState({ submitted: true });
   };
 
