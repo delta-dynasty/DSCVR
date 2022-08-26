@@ -29,7 +29,7 @@ class Index extends Component {
                   tag="h6">
                   {listing.description}
                   </CardSubtitle>
-                  <NavLink to={`/show/${listing.id}`}>
+                  <NavLink to={`/listing/${listing.id}`}>
                     <Button>More info</Button>
                   </NavLink> 
               </CardBody>
