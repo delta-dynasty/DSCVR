@@ -23,11 +23,6 @@ class Header extends Component {
           }
           {
             <NavItem>
-              <a  href='/index' className="nav-link">See all Locations</a>
-            </NavItem>
-          }
-          {
-            <NavItem>
               <a href='/about' className="nav-link">About us</a>
             </NavItem>
           }
