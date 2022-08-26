@@ -70,9 +70,9 @@ export default class Show extends Component {
         {this.state.review &&(<CreateReview listing_id= {listing.id} user_id= {current_user.id}/>)}
         <br>
         </br>
-        <NavLink to={`/update_or_delete_review/${review.id}`}>
+        {/* <NavLink to={`/update_or_delete_review/${review.id}`}>
           <Button>Update Review</Button>
-        </NavLink>
+        </NavLink> */}
         <br>
         </br>
         {reviews.filter((review) => review.listing_id === listing.id).map((review) => {
