@@ -23,7 +23,8 @@ class App extends Component {
     super(props)
     this.state = {
       listings: [],
-      reviews: reviews
+      reviews: reviews,
+      search: false
     }
   }
   
@@ -126,12 +127,16 @@ class App extends Component {
     let query = new URLSearchParams(values).toString()
     fetch(`/search?${query}`)
       .then(response => response.json())
-      .then((data) => this.setState({ listings: data }))
+      .then((data) => this.setState({ listings: data, search: true }))
   };
 
   getKeyByValue = (object, value) => {
       return Object.keys(object).filter(key => object[key] === value);
   };
+
+  resetSearch = () => {
+    this.setState({search: false})
+  }
 
   render() {
     const {
@@ -146,17 +151,14 @@ class App extends Component {
       <>
         <Router>
           <Header {...this.props} />
-            {this.state.listings.length > 0 && (
-              <Index listings={this.state.listings}/>
+            {this.state.listings.length > 0 && this.state.search && (
+              <Index listings={this.state.listings} resetSearch={this.resetSearch}/>
             )}
             <Switch>
             <Route exact path="/" render={() => <Home handleSubmit={this.handleSubmit}/>}/>
             <Route path="/about" component={About} />
             <Route path="/create_listing"
               render={() => <CreateListing createNewListing={this.createNewListing} current_user={current_user} />} />
-            <Route path="/listings_index" 
-              render={() => <Index listings={this.state.listings}/>}
-              />
             <Route path="/logged_in_home" component={LoggedInHome} />
             <Route path="/create_review"
               render={() => <CreateReview createReview={this.createReview} current_user={this.props.current_user} />} />

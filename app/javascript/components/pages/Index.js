@@ -30,7 +30,7 @@ class Index extends Component {
                   {listing.description}
                   </CardSubtitle>
                   <NavLink to={`/listing/${listing.id}`}>
-                    <Button>More info</Button>
+                    <Button onClick={this.props.resetSearch}>More info</Button>
                   </NavLink> 
               </CardBody>
               </Card>)
