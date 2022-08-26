@@ -153,7 +153,7 @@ class App extends Component {
             <Route exact path="/" render={() => <Home handleSubmit={this.handleSubmit}/>}/>
             <Route path="/about" component={About} />
             <Route path="/create_listing"
-              render={() => <CreateListing createListing={this.createListing} current_user={this.props.current_user} />} />
+              render={() => <CreateListing createNewListing={this.createNewListing} current_user={current_user} />} />
             <Route path="/listings_index" 
               render={() => <Index listings={this.state.listings}/>}
               />
