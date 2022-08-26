@@ -26,19 +26,9 @@ class Header extends Component {
               <a href='/about' className="nav-link">About us</a>
             </NavItem>
           }
-          {
-            <NavItem>
-              <a href='/review' className="nav-link">Check out some reviews</a>
-            </NavItem>
-          }
           {logged_in &&
             <NavItem>
-              <a href='/create_listing' className="nav-link">Submit a new listing</a>
-            </NavItem>
-          }
-           {logged_in &&
-            <NavItem>
-              <a href='/update_or_delete_listing' className="nav-link">Update or Delete a previous listing</a>
+              <a href='/create_listing' className="nav-link">Create a new listing</a>
             </NavItem>
           }
           {logged_in &&
