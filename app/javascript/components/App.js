@@ -34,13 +34,6 @@ class App extends Component {
     .catch(errors => console.log("Listing read errors:", errors))
   }
 
-  // readListing = () => {
-  //   fetch("/index")
-  //   .then(response => response.json())
-  //   .then(listingArr => this.setState({ listing: listingArr }))
-  //   .catch(errors => console.log("Listing read errors:", errors))
-  // }
-
     createNewListing= (theNewListing) =>{
     fetch("/listings",{
     body: JSON.stringify(theNewListing),
@@ -79,12 +72,6 @@ class App extends Component {
     .catch(errors => console.log("Delete listing errors:", errors))
   }
   
-  // Fetch calls for reviews.
-
-  // componentDidMount() {
-  //   this.readReview()
-  //   console.log(this.state)
-  // }
 
   readReview = () => {
     fetch("/reviews")
@@ -154,8 +141,6 @@ class App extends Component {
       sign_in_route,
       sign_out_route,
     } = this.props;
-
-    console.log(this.props)
 
     return(
       <>

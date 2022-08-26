@@ -10,7 +10,7 @@ export default class CreateReview extends Component {
         title: "",
         comment: "",
         user_id: this.props.current_user.id,
-        // listing_id: this.props.location.state
+        listing_id: ""
       },
       submitted: false,
     };
@@ -28,8 +28,6 @@ export default class CreateReview extends Component {
   };
 
   render() {
-    // const { id } = this.props.location
-    // console.log(this.props.location.state)
     return (
       <>
         <h1>Create a Review</h1>
@@ -40,7 +38,6 @@ export default class CreateReview extends Component {
               type="text"
               name="name"
               onChange={this.handleChange}
-              // value={this.state.createReview.title}
             />
           </FormGroup>
           <FormGroup row>
@@ -49,7 +46,6 @@ export default class CreateReview extends Component {
               type="textarea"
               name="text"
               onChange={this.handleChange}
-              // value={this.state.createReview.comment}
             />
           </FormGroup>
           <Button onClick={this.handleSubmit}>Submit</Button>

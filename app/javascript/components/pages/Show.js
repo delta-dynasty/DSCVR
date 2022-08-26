@@ -31,13 +31,12 @@ export default class Show extends Component {
       new_user_route,
       sign_in_route,
       sign_out_route,
+      review,
+      listing
     } = this.props;
 
 
-    let { review } = this.props
-    let { listing } = this.props
-
-    console.log(listing)
+    
     return (
       <>
       <div>Show</div>
@@ -66,16 +65,14 @@ export default class Show extends Component {
         }
         <br>
         </br>
-        {/* {logged_in && */}
         
           <Button onClick={this.handleClick}>Leave Review</Button>
         {this.state.review &&(<CreateReview listing_id= {listing.id} user_id= {current_user.id}/>)}
-        {/* }  */}
         <br>
         </br>
-        {/* <NavLink to={`/update_or_delete_review/${review.id}`}>
+        <NavLink to={`/update_or_delete_review/${review.id}`}>
           <Button>Update Review</Button>
-        </NavLink> */}
+        </NavLink>
         <br>
         </br>
         {reviews.filter((review) => review.listing_id === listing.id).map((review) => {
