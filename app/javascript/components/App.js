@@ -5,7 +5,6 @@ import About from './pages/About'
 import CreateListing from './pages/CreateListing'
 import Home from './pages/Home'
 import Index from './pages/Index'
-import LoggedInHome from './pages/LoggedInHome'
 import NotFound from './pages/NotFound'
 import Review from './pages/CreateReview'
 import UpdateOrDeleteReview from './pages/UpdateOrDeleteReview'
@@ -156,7 +155,6 @@ class App extends Component {
             <Route path="/listings_index" 
               render={() => <Index listings={this.state.listings}/>}
               />
-            <Route path="/logged_in_home" component={LoggedInHome} />
             <Route path="/review"
               render={() => <Review createReview={this.createReview} current_user={this.props.current_user} />} />
             <Route path="/update_or_delete_review/:id" render={(props) => {
@@ -170,7 +168,7 @@ class App extends Component {
               let listing = this.state.reviews.find(listing => listing.id === id)
               return <UpdateOrDeleteListing {...props} listing={listing} />
             }}/>
-            <Route path="/not_found" component={NotFound} />
+            <Route component={NotFound} />
             </Switch>
           <Footer />
         </Router>
