@@ -5,7 +5,7 @@ export default class NotFound extends Component {
     return (
       <Card>
           <CardImg
-            alt="Not Found Picture "
+            alt="Not Found Picture"
             src=""
             top
             height="800px"
