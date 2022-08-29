@@ -46,7 +46,7 @@ Try something new, DSCVR.
 
 | Devise        | RSpec         |
 | ------------- |:-------------:|
-| Webpacker     | Prettier      |
+| Webpacker     | Ruby 3.0.0    |
 | ReactStrap    | React-DOM     |
 
 
@@ -112,21 +112,9 @@ A registered user can access the following:
 **This project was created as part of the Capstone Project for the 12-week Intensive Bootcamp with LEARN Academy.** 
 
 1. Project Manager -- Samuel Gordon
-
-- Takes ownership on internal team communication. Oversees the project management board.
-- Guardian of the Trello board. Ensures developers are assigned to the card they are working on.
         
 2. Tech Lead -- Luis Ramos
 
-- Takes ownership over the code base and version control. Guardian of GitHub. Merges code when appropriate.
-- Surfaces blockers to the class at the beginning of the day.
-
 3. Product Manager -- James Caddick
 
-- Must have strong management skills to provide support to the team and keep team unblocked.
-- Ensures the product meets all requirements and the README contains appropriate information.
-
 4. Design Lead -- Sean Wallace
-
-- Takes ownership over the look, color scheme, and branding of the project.
-- Explores styling libraries and ensures responsive design with accessibility features.
