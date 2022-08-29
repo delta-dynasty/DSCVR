@@ -91,7 +91,7 @@ A registered user can access the following:
 
 **Create**
 
-- Create a new Listinga & Review
+- Create a new Listing & Review
 
 **Read**
 
