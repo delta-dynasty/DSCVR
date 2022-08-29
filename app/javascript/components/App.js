@@ -5,7 +5,6 @@ import About from './pages/About'
 import CreateListing from './pages/CreateListing'
 import Home from './pages/Home'
 import Index from './pages/Index'
-import LoggedInHome from './pages/LoggedInHome'
 import NotFound from './pages/NotFound'
 import CreateReview from './pages/CreateReview'
 import UpdateOrDeleteReview from './pages/UpdateOrDeleteReview'
@@ -158,10 +157,12 @@ class App extends Component {
             <Route exact path="/" render={() => <Home handleSubmit={this.handleSubmit}/>}/>
             <Route path="/about" component={About} />
             <Route path="/create_listing"
-              render={() => <CreateListing createNewListing={this.createNewListing} current_user={current_user} />} />
-            <Route path="/logged_in_home" component={LoggedInHome} />
-            <Route path="/create_review"
-              render={() => <CreateReview createReview={this.createReview} current_user={this.props.current_user} />} />
+              render={() => <CreateListing createListing={this.createListing} current_user={current_user} />} />
+            <Route path="/listings_index" 
+              render={() => <Index listings={this.state.listings}/>}
+              />
+            <Route path="/review"
+              render={() => <Review createReview={this.createReview} current_user={current_user} />} />
             <Route path="/update_or_delete_review/:id" render={(props) => {
               let id = +props.match.params.id
               let review = this.state.reviews.find(review => review.id === id)
@@ -182,7 +183,7 @@ class App extends Component {
               let listing = this.state.reviews.find(listing => listing.id === id)
               return <UpdateOrDeleteListing {...props} listing={listing} />
             }}/>
-            <Route path="/not_found" component={NotFound} />
+            <Route component={NotFound} />
             </Switch>
           <Footer />
         </Router>
