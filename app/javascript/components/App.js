@@ -5,7 +5,6 @@ import About from "./pages/About";
 import CreateListing from "./pages/CreateListing";
 import Home from "./pages/Home";
 import Index from "./pages/Index";
-import LoggedInHome from "./pages/LoggedInHome";
 import NotFound from "./pages/NotFound";
 import CreateReview from "./pages/CreateReview";
 import UpdateOrDeleteReview from "./pages/UpdateOrDeleteReview";
@@ -13,12 +12,13 @@ import Show from "./pages/Show";
 import UpdateOrDeleteListing from "./pages/UpdateOrDeleteListing";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import reviews from "./MockReviews";
+import listings from "./MockListings";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listings: [],
+      listings: listings,
       reviews: reviews,
       search: false,
     };
@@ -32,6 +32,7 @@ class App extends Component {
   };
 
   createNewListing = (theNewListing) => {
+    console.log("app.js create listing" , theNewListing)
     fetch("/listings", {
       body: JSON.stringify(theNewListing),
       headers: {
@@ -166,13 +167,12 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/logged_in_home" component={LoggedInHome} />
             <Route
               path="/create_review"
               render={() => (
                 <CreateReview
                   createReview={this.createReview}
-                  current_user={this.props.current_user}
+                  current_user={current_user}
                 />
               )}
             />
