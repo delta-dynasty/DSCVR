@@ -29,8 +29,8 @@ class Index extends Component {
                   tag="h6">
                   {listing.description}
                   </CardSubtitle>
-                  <NavLink to={`/show/${listing.id}`}>
-                    <Button>More info</Button>
+                  <NavLink to={`/listing/${listing.id}`}>
+                    <Button onClick={this.props.resetSearch}>More info</Button>
                   </NavLink> 
               </CardBody>
               </Card>)

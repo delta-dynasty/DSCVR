@@ -6,7 +6,7 @@ import CreateListing from './pages/CreateListing'
 import Home from './pages/Home'
 import Index from './pages/Index'
 import NotFound from './pages/NotFound'
-import Review from './pages/CreateReview'
+import CreateReview from './pages/CreateReview'
 import UpdateOrDeleteReview from './pages/UpdateOrDeleteReview'
 import Show from './pages/Show'
 import UpdateOrDeleteListing from './pages/UpdateOrDeleteListing'
@@ -15,15 +15,18 @@ import {
   Route,
   Switch,
 } from 'react-router-dom'
+import reviews from './MockReviews'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      listings: []
+      listings: [],
+      reviews: reviews,
+      search: false
     }
   }
-
+  
   readListing = () => {
     fetch("/listings")
     .then(response => response.json())
@@ -69,52 +72,51 @@ class App extends Component {
     .catch(errors => console.log("Delete listing errors:", errors))
   }
   
-  // Fetch calls for reviews.
 
-  // readReview = () => {
-  //   fetch("/review")
-  //   .then(response => response.json())
-  //   .then(reviewArr => this.setState({ review: reviewArr }))
-  //   .catch(errors => console.log("Review read errors:", errors))
-  // }
+  readReview = () => {
+    fetch("/reviews")
+    .then(response => response.json())
+    .then(reviewArr => this.setState({ review: reviewArr }))
+    .catch(errors => console.log("Review read errors:", errors))
+  }
 
-  //   createNewReview= (theNewReview) =>{
-  //   fetch("/review",{
-  //   body: JSON.stringify(theNewReview),
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   },
-  //   method:"POST"
-  //   })
-  //   .then(response => response.json())
-  //   .then(() => this.readReview())
-  //   .catch(errors => console.log("New review errors: ", errors))
-  //   }
+    createNewReview= (theNewReview, listingID) =>{
+    fetch(`/reviews`,{
+    body: JSON.stringify(theNewReview),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    method:"POST"
+    })
+    .then(response => response.json())
+    .then(() => this.readReview())
+    .catch(errors => console.log("New review errors: ", errors))
+    }
   
-  //   updateReview = (review, id) => {
-  //   fetch(`/review/${id}`,{
-  //   body: JSON.stringify(listing),
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   },
-  //   method:"PATCH"
-  //   })
-  //   .then(response => response.json())
-  //   .then(()=> this.readReview())
-  //   .catch(errors => console.log("Update review errors: ", errors))
-  // }
+    updateReview = (review, id) => {
+    fetch(`/reviews/${id}`,{
+    body: JSON.stringify(review),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    method:"PATCH"
+    })
+    .then(response => response.json())
+    .then(()=> this.readReview())
+    .catch(errors => console.log("Update review errors: ", errors))
+    }
 
-  //   deleteReview = (id) => {
-  //   fetch(`/review/${id}`, {
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     method: "DELETE"
-  //   })
-  //   .then(response => response.json())
-  //   .then(() => this.readReview())
-  //   .catch(errors => console.log("Delete review errors:", errors))
-  //   }
+    deleteReview = (id) => {
+    fetch(`/reviews/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(() => this.readReview())
+    .catch(errors => console.log("Delete review errors:", errors))
+    }
 
 
 
@@ -124,12 +126,16 @@ class App extends Component {
     let query = new URLSearchParams(values).toString()
     fetch(`/search?${query}`)
       .then(response => response.json())
-      .then((data) => this.setState({ listings: data }))
+      .then((data) => this.setState({ listings: data, search: true }))
   };
 
   getKeyByValue = (object, value) => {
       return Object.keys(object).filter(key => object[key] === value);
   };
+
+  resetSearch = () => {
+    this.setState({search: false})
+  }
 
   render() {
     const {
@@ -144,8 +150,8 @@ class App extends Component {
       <>
         <Router>
           <Header {...this.props} />
-            {this.state.listings.length > 0 && (
-              <Index listings={this.state.listings}/>
+            {this.state.listings.length > 0 && this.state.search && (
+              <Index listings={this.state.listings} resetSearch={this.resetSearch}/>
             )}
             <Switch>
             <Route exact path="/" render={() => <Home handleSubmit={this.handleSubmit}/>}/>
@@ -162,7 +168,16 @@ class App extends Component {
               let review = this.state.reviews.find(review => review.id === id)
               return <UpdateOrDeleteReview {...props} review={review} />
             }}/>
-            <Route path="/show" component={Show} />
+            <Route path="/listing/:id" render={(props) => {
+                let id = +props.match.params.id
+                let listing = this.state.listings.find(listing => listing.id === id)
+                return( 
+                <Show 
+                {...props} 
+                listing={listing}
+                />
+                )
+              }} />
             <Route path="/update_or_delete_listing/:id" render={(props) => {
               let id = +props.match.params.id
               let listing = this.state.reviews.find(listing => listing.id === id)
