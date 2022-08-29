@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { Card, CardBody, CardImg, CardTitle, CardText, CardLink, CardSubtitle } from "reactstrap";
-import james from '/Users/learnacademy/Desktop/DSCVR/static/james.jpg'
-import luis from '/Users/learnacademy/Desktop/DSCVR/static/luis.jpeg'
-import sean from '/Users/learnacademy/Desktop/DSCVR/static/sean.jpeg'
-import samuel from '/Users/learnacademy/Desktop/DSCVR/static/samuel.jpeg'
+
 export default class About extends Component {
   render() {
   return (
@@ -17,7 +14,7 @@ export default class About extends Component {
         <Card className="card-border">
           <CardImg className="card-image"
             alt="Picture of James"
-            src={james}
+            src="james.jpg"
             top
             height="320px"
           ></CardImg>
@@ -43,8 +40,8 @@ export default class About extends Component {
         &nbsp; &nbsp;
         <Card>
           <CardImg className="card-image"
-            alt="..."
-            src={samuel}
+            alt="Picture of Samuel"
+            src="samuel.jpeg"
             top
             height="320px"
           ></CardImg>
@@ -71,7 +68,7 @@ export default class About extends Component {
         <Card>
           <CardImg className="card-image"
             alt="Picture of Luis"
-            src={luis}
+            src="luis.jpeg"
             top
             height="320px"
           ></CardImg>
@@ -98,7 +95,7 @@ export default class About extends Component {
         <Card>
           <CardImg className="card-image"
             alt="Picture of Sean"
-            src={sean}
+            src="sean.jpeg"
             top
             height="320px"
           ></CardImg>

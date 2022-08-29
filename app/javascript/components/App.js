@@ -157,12 +157,12 @@ class App extends Component {
             <Route exact path="/" render={() => <Home handleSubmit={this.handleSubmit}/>}/>
             <Route path="/about" component={About} />
             <Route path="/create_listing"
-              render={() => <CreateListing createListing={this.createListing} current_user={this.props.current_user} />} />
+              render={() => <CreateListing createListing={this.createListing} current_user={current_user} />} />
             <Route path="/listings_index" 
               render={() => <Index listings={this.state.listings}/>}
               />
             <Route path="/review"
-              render={() => <Review createReview={this.createReview} current_user={this.props.current_user} />} />
+              render={() => <Review createReview={this.createReview} current_user={current_user} />} />
             <Route path="/update_or_delete_review/:id" render={(props) => {
               let id = +props.match.params.id
               let review = this.state.reviews.find(review => review.id === id)
