@@ -1,0 +1,24 @@
+.headerinline{
+    display: inline-block;
+}
+
+.headerbreak{
+    display:flex;
+    text-align: right;
+}
+
+.home-head{
+    background: linear-gradient(to bottom, #E5790D, #EEEDE7,);
+}
+
+.dscvr-logo{
+    display: flex;
+    justify-content: center;
+    height: 50px;
+}
+
+.home-head {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+}
