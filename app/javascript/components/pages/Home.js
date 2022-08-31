@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, FormGroup, Input, Label, Button } from "reactstrap";
+import { Form, FormGroup, Input, UncontrolledCarousel, Button } from "reactstrap";
 
 const Home = (props) => {
   const [form, setForm] = useState({
@@ -52,9 +52,54 @@ const Home = (props) => {
           Alcohol
           <Input type="checkbox" name="alcohol" onChange={(e) => handleChange(e)}/>
         </FormGroup>
-        <Button className="button" color="primary" onClick={(e) => props.handleSubmit(e, form)}>Submit</Button>
       </Form>
-      <h3>DSCVR activity, DSCVR fun, DSCVR adventure, DSCVR friendship, DSCVR delicious, DSCVR something new.  </h3>
+      <div className="centerbutton">
+        <Button className="button" color="primary" onClick={(e) => props.handleSubmit(e, form)}>Submit</Button></div>
+      <div className="dscvrtext">
+      {/* <h3>DSCVR activity, fun, adventure, friendship, delicious, something new.  </h3> */}
+      </div>
+      <div>
+        <UncontrolledCarousel 
+          items={[
+            {
+              altText: 'image description',
+              caption: '',
+              key: 1,
+              src: '/static/malibu.jpeg'
+            },
+            {
+              altText: 'image description',
+              caption: '',
+              key: 2,
+              src: '/static/bridge.jpeg'
+            },
+            {
+              altText: 'image description',
+              caption: '',
+              key: 3,
+              src: '/static/dommedbar.jpeg'
+            },
+            {
+              altText: 'image description',
+              caption: '',
+              key: 4,
+              src: '/static/waterpark.webp'
+            },
+            {
+              altText: 'image description',
+              caption: '',
+              key: 5,
+              src: '/static/Acuario.jpeg'
+            },  
+            {
+              altText: 'image description',
+              caption: '',
+              key: 6,
+              src: '/static/gliders.jpeg'
+            }  
+          ]}
+        />
+        </div>
     </main>
   )
 }

@@ -10,10 +10,9 @@ class Header extends Component {
       sign_in_route,
       sign_out_route
     } = this.props
-    console.log("logged_in:", logged_in)
-    console.log("current_user:", current_user)
     return(
       <>
+        <main className="home-head">
         <Nav>
           {
             <NavItem>
@@ -27,7 +26,15 @@ class Header extends Component {
           }
           {logged_in &&
             <NavItem>
-              <a href='/create_listing' className="nav-link">Create a new listing</a>
+              <a href='/create_listing' className="nav-link">Submit a new listing</a>
+            </NavItem>
+           }
+          </Nav>
+          <img className='dscvr-logo' src="/static/dscvr.png"></img>
+          <Nav>
+           {logged_in &&
+            <NavItem>
+              <a href='/update_or_delete_listing' className="nav-link">Update or Delete a previous listing</a>
             </NavItem>
           }
           {logged_in &&
@@ -45,7 +52,8 @@ class Header extends Component {
               <a href={new_user_route} className="nav-link">Sign Up</a>
             </NavItem>
           }
-        </Nav>
+          </Nav>
+          </main>
       </>
     )
   }

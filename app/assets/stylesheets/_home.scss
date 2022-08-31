@@ -11,3 +11,21 @@
         }
     }
 }
+
+.dscvrtext{
+    color: #b24202;
+    text-align: center;
+    text-shadow: 2px 2px 5px #6f988a;
+    font-family: sans-serif, Helvetica;
+
+}
+
+.centerbutton{
+    display: flex, grid;
+    text-align: center;
+    margin: auto;
+}
+
+ .carousel-item > img {
+     width: 100%;
+ }
