@@ -28,7 +28,7 @@ class Header extends Component {
             <NavItem>
               <a href='/create_listing' className="nav-link">Submit a new listing</a>
             </NavItem>
-            }
+           }
           </Nav>
           <img className='dscvr-logo' src="/static/dscvr.png"></img>
           <Nav>

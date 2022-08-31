@@ -15,13 +15,13 @@ export default class CreateListing extends Component {
         description: " ",
         phone: " ",
         hours: " ",
-        outdoors: " ",
-        inside: " ",
-        water: " ",
-        children: " ",
-        pets: " ",
-        food: " ",
-        alcohol: " ",
+        outdoors: false,
+        inside: false,
+        water: false,
+        children: false,
+        pets: false,
+        food: false,
+        alcohol: false,
         image: " ",
         user_id: this.props.current_user.id,
       },
@@ -41,6 +41,7 @@ export default class CreateListing extends Component {
   };
 
   render() {
+    console.log("create listing", this.state.createListing)
     return (
       <>
         <h1>Create Listing</h1>
@@ -119,7 +120,7 @@ export default class CreateListing extends Component {
           </FormGroup>
           <FormGroup>
             Outdoors &nbsp;&nbsp;&nbsp;
-            <Input type="checkbox" />
+            <Input type="checkbox" name="outdoors" value={true}/>
             <Label check>Yes</Label>&nbsp;&nbsp;
             <Input type="checkbox" />
             <Label check>No</Label>
@@ -167,7 +168,7 @@ export default class CreateListing extends Component {
             <Label check>No</Label>
           </FormGroup>
           <Button onClick={this.handleSubmit}>Submit</Button>
-          {this.state.submitted && <Redirect to="/show" />}
+          {this.state.submitted && <Redirect to="/" />}
         </Form>
       </>
     );
